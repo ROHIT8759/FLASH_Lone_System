@@ -1,6 +1,172 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
+// Flash Loan Contract ABI
+const FLASH_LOAN_ABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_poolAddress",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "profit",
+        "type": "uint256"
+      }
+    ],
+    "name": "ArbitrageProfit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "premium",
+        "type": "uint256"
+      }
+    ],
+    "name": "FlashLoanExecuted",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "POOL",
+    "outputs": [
+      {
+        "internalType": "contract IPool",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "premium",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "initiator",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "params",
+        "type": "bytes"
+      }
+    ],
+    "name": "executeOperation",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "params",
+        "type": "bytes"
+      }
+    ],
+    "name": "requestFlashLoan",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];
+
+// Token addresses for different networks (update with actual addresses)
+const TOKEN_ADDRESSES: { [key: string]: string } = {
+  ETH: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", // Common ETH placeholder
+  USDC: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", // USDC on Ethereum
+  USDT: "0xdAC17F958D2ee523a2206206994597C13D831ec7"  // USDT on Ethereum
+};
+
 // Utility functions for validation
 const isValidHexAddress = (address: string): boolean => {
   if (!address) return false;
@@ -15,6 +181,26 @@ const formatAddress = (address: string): string => {
   // Ensure it starts with 0x
   const cleanAddress = address.startsWith('0x') ? address : `0x${address}`;
   return cleanAddress;
+};
+
+const isValidHexBytes = (data: string): boolean => {
+  if (!data) return false;
+  // Remove 0x prefix if present
+  const cleanData = data.startsWith('0x') ? data.slice(2) : data;
+  // Check if it's a valid hex string with even number of characters
+  return /^[0-9a-fA-F]*$/.test(cleanData) && cleanData.length % 2 === 0;
+};
+
+const formatHexBytes = (data: string): string => {
+  if (!data) return '0x';
+  // Remove 0x prefix if present
+  let cleanData = data.startsWith('0x') ? data.slice(2) : data;
+  // Pad with leading zero if odd length
+  if (cleanData.length % 2 !== 0) {
+    cleanData = '0' + cleanData;
+  }
+  // Ensure it starts with 0x
+  return '0x' + cleanData;
 };
 
 const validateAmount = (amount: string, maxAmount: string): { isValid: boolean; error?: string } => {
@@ -39,7 +225,7 @@ const LoanRequestForm: React.FC = () => {
   const [purpose, setPurpose] = useState<string>("");
   const [loanType, setLoanType] = useState<string>("standard"); // New state for loan type
   const [flashLoanData, setFlashLoanData] = useState<string>(""); // Flash loan execution data
-  const contractAddress = "0xcc5e97e0015543dfac2d3e686fed214a7450e5c1efe15786dfde118987c3fbec";
+  const contractAddress = "0xd2a5bC10698FD955D1Fe6cb468a17809A08fd005";
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isInitializing, setIsInitializing] = useState<boolean>(false);
@@ -343,29 +529,53 @@ const LoanRequestForm: React.FC = () => {
       return;
     }
 
+    // Validate hex bytes format
+    if (!isValidHexBytes(flashLoanData)) {
+      setValidationErrors(prev => ({ 
+        ...prev, 
+        flashLoanData: "Flash loan data must be valid hex bytes (even number of hex characters)" 
+      }));
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       if (!window.ethereum) throw new Error("Wallet not connected");
 
       const provider = new ethers.BrowserProvider(window.ethereum);
-      await provider.getSigner(); // Verify wallet connection
+      const signer = await provider.getSigner();
+
+      // Get contract instance
+      const contract = new ethers.Contract(
+        contractAddress, // Use your deployed contract address
+        FLASH_LOAN_ABI,
+        signer
+      );
+
+      // Get token address
+      const tokenAddress = TOKEN_ADDRESSES[tokenType];
+      if (!tokenAddress) throw new Error("Unsupported token type");
+
+      // Convert amount to Wei (18 decimals for most tokens)
+      const amountInWei = ethers.parseUnits(amount, 18);
       
-      // Convert amount to Wei (smallest unit of ETH)
-      const amountInWei = ethers.parseEther(amount);
-      
-      // Flash loans don't need collateral as they must be repaid in same transaction
+      // Format and validate flashLoanData as proper hex bytes
+      const params = formatHexBytes(flashLoanData);
+
       console.log("Flash loan request:", {
+        tokenAddress,
         amount: amountInWei.toString(),
-        tokenType,
-        executionData: flashLoanData,
+        params,
         purpose: purpose || "Flash loan operation"
       });
-      
-      // Mock transaction for flash loan
-      const mockTxHash = "0xFL" + Math.random().toString(16).substr(2, 6); // FL prefix for flash loan
 
-      setTxHash(mockTxHash);
+      // Send transaction to contract
+      const tx = await contract.requestFlashLoan(tokenAddress, amountInWei, params);
+      setTxHash(tx.hash);
+      
+      // Wait for transaction confirmation
+      await tx.wait();
       
       // Reset form
       setAmount("");
@@ -383,6 +593,10 @@ const LoanRequestForm: React.FC = () => {
           errorMessage = "Flash loan execution failed: ensure your data returns borrowed amount + fee.";
         } else if (err.message.includes("invalid data")) {
           errorMessage = "Invalid execution data provided.";
+        } else if (err.message.includes("user rejected")) {
+          errorMessage = "Transaction was rejected by user.";
+        } else if (err.message.includes("gas")) {
+          errorMessage = "Gas estimation failed. Please check your parameters.";
         } else {
           errorMessage = err.message;
         }
@@ -602,6 +816,7 @@ const LoanRequestForm: React.FC = () => {
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-blue-400 focus:outline-none"
                 value={tokenType}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTokenType(e.target.value)}
+                aria-label="Token Type Selection"
                 required
               >
                 <option value="ETH" className="text-black bg-white">ETH</option>
@@ -649,7 +864,7 @@ const LoanRequestForm: React.FC = () => {
                   }`}
                   value={flashLoanData}
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFlashLoanData(e.target.value)}
-                  placeholder="0x1234... (encoded function call data that will execute your flash loan logic)"
+                  placeholder="0x1234abcd... (hex bytes with even number of characters - encoded function call data)"
                   required
                 />
                 {validationErrors.flashLoanData && (

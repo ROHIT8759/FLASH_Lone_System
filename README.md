@@ -179,24 +179,7 @@ Built for DeFi innovation, enabling capital-efficient trading strategies through
 
 This project is licensed under the MIT License.
 
-## ⚠️ Disclaimer
 
-This is experimental DeFi software. Smart contracts involve financial risk. Always:
-
-- Understand the code before interacting
-- Start with small amounts
-- Be aware of gas costs and slippage
-- Never invest more than you can afford to lose
-
-**The software is provided as-is for educational and development purposes.**
-
-## 📞 Support
-
-- **Documentation**: See [MAINNET_DEPLOYMENT_SUCCESS.md](./MAINNET_DEPLOYMENT_SUCCESS.md)
-- **Issues**: GitHub Issues
-- **Contract**: [Etherscan](https://etherscan.io/address/0xacd628306e1831c1105390d5f2eeba31e06bf8db)
-
----
 
 **Built for the DeFi community with ❤️**  
 **Live on Ethereum Mainnet** 🚀

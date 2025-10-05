@@ -1,89 +1,155 @@
-# LYNQ - Flash Loan DeFi Platform ⚡
+# ElegentDeFi Platform ⚡
 
-A decentralized finance application that enables instant, collateral-free flash loans on the Ethereum blockchain. Built for traders, arbitrageurs, and DeFi enthusiasts seeking capital-efficient strategies.
+A comprehensive decentralized finance platform offering flash loans, staking, trust scoring, and governance on Ethereum. Built for advanced DeFi users seeking sophisticated financial tools.
 
-![Flash Loan Platform](https://img.shields.io/badge/DeFi-Flash%20Loans-blue) ![React](https://img.shields.io/badge/React-18+-61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6) ![Ethereum](https://img.shields.io/badge/Ethereum-Blockchain-627EEA)
+![DeFi Platform](https://img.shields.io/badge/DeFi-Complete%20Platform-blue) ![React](https://img.shields.io/badge/React-18+-61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6) ![Ethereum](https://img.shields.io/badge/Ethereum-Mainnet-627EEA)
 
 ## 🚀 Features
 
-- **⚡ Flash Loans**: Borrow large amounts without collateral - repay in same transaction
-- **🪙 Multi-Token Support**: ETH, USDC, USDT with automatic Wei conversion
-- **🔐 Secure Web3 Integration**: MetaMask wallet connection with ethers.js v6
-- **📝 Smart Validation**: Real-time hex bytes validation and error handling
-- **💎 Modern UI**: Responsive design with Tailwind CSS and smooth animations
-- **🔍 Transaction Tracking**: Real-time status updates and confirmation
+### ⚡ Flash Loans
+
+- **Instant Liquidity**: Borrow large amounts without collateral
+- **0.09% Fee**: Competitive flash loan rates
+- **Atomic Transactions**: All operations in single transaction
+- **Arbitrage Ready**: Perfect for complex DeFi strategies
+
+### 🔒 Staking System
+
+- **ETH Staking**: Earn 12.5% APY on staked ETH
+- **Flexible Terms**: No lock period, instant withdrawal
+- **Auto-Compounding**: Rewards automatically reinvested
+- **Governance Rights**: Voting power based on stake
+
+### � Trust Score System
+
+- **Credit Scoring**: On-chain reputation (300-850 range)
+- **Dynamic Rates**: Better scores = better loan terms
+- **NFT Integration**: Trust scores as tradeable NFTs
+- **Real-time Updates**: Blockchain-verified scoring
+
+### 🏛️ Governance
+
+- **Proposal System**: Community-driven improvements
+- **Token Voting**: Weighted by stake and trust score
+- **Automated Execution**: Smart contract-based execution
+
+### 📈 Advanced Analytics
+
+- **Platform Stats**: Total value locked, loan metrics
+- **User Dashboard**: Personal performance tracking
+- **Real-time Data**: Live blockchain data integration
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18, TypeScript, Vite
-- **Styling**: Tailwind CSS, Framer Motion
-- **Blockchain**: ethers.js v6, Web3 integration
-- **Smart Contract**: Solidity, deployed on Ethereum
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS
+- **Blockchain**: ethers.js v6, Ethereum Mainnet
+- **Smart Contract**: Solidity with full DeFi functionality
+- **Architecture**: Modular component design with custom hooks
 
 ## 📋 Prerequisites
 
-- Node.js 16+ and npm/yarn
+- Node.js 18+ and pnpm
 - MetaMask browser extension
-- Ethereum testnet/mainnet access
+- Ethereum mainnet access
 
 ## 🚀 Quick Start
 
 ```bash
 # Clone the repository
 git clone https://github.com/ROHIT8759/FLASH_Lone_System.git
-cd LYNQ
+cd FLASH_Lone_System
 
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open [http://localhost:5174](http://localhost:5174) in your browser.
 
 ## 📖 Usage
 
-1. **Connect Wallet**: Click "Connect Wallet" and approve MetaMask connection
-2. **Select Loan Type**: Choose "Flash Loan" for instant borrowing
-3. **Configure Parameters**:
-   - Select token (ETH/USDC/USDT)
-   - Enter loan amount
-   - Provide execution data (hex bytes for your strategy)
-4. **Submit Transaction**: Review and confirm in MetaMask
-5. **Track Status**: Monitor transaction confirmation and results
+### 🔗 Connect Wallet
+
+1. Click "Connect Wallet" in the navigation
+2. Approve MetaMask connection
+3. Ensure you're on Ethereum Mainnet
+
+### ⚡ Flash Loans
+
+1. Navigate to "ADVANCED" → "Flash Loans" tab
+2. Enter loan amount and target contract
+3. Execute flash loan with automatic repayment
+
+### 🔒 Staking
+
+1. Go to "ADVANCED" → "Staking" tab
+2. Enter ETH amount to stake
+3. Earn 12.5% APY with instant rewards
+
+### 📊 Trust Score
+
+1. Access "ADVANCED" → "Trust Score" tab
+2. View your credit rating (300-850)
+3. Better scores unlock better rates
+
+### 🏛️ Governance
+
+1. Visit "ADVANCED" → "Analytics" for proposals
+2. Create proposals for platform improvements
+3. Vote using your staked tokens
 
 ## 🔧 Smart Contract
 
-**Contract Address**: `0xd2a5bC10698FD955D1Fe6cb468a17809A08fd005`
+**Contract Address**: `0xacd628306e1831c1105390d5f2eeba31e06bf8db` (Ethereum Mainnet)
+**Transaction**: `0x940ba1c7661ccd465b7f171a8995f191f270c24df35cfa1a1a1c477f107eeae8`
+**Block**: 40059499
 
 ### Key Functions:
 
-- `requestFlashLoan(address token, uint256 amount, bytes params)` - Request flash loan
-- `executeOperation(...)` - Callback for loan execution
-- `withdraw(address token, uint256 amount)` - Withdraw funds
+- `flashLoan(uint256 amount, address target, bytes data)` - Execute flash loan
+- `stake()` - Stake ETH for rewards
+- `unstake(uint256 amount)` - Withdraw staked ETH
+- `createLoan(...)` - Create collateralized loan
+- `updateTrustScore(...)` - Update user credit score
+- `createProposal(...)` - Submit governance proposal
 
 ## 💡 Use Cases
 
+### ⚡ Flash Loans
+
 - **Arbitrage Trading**: Exploit price differences across DEXs
-- **Liquidation Bots**: Liquidate undercollateralized positions
+- **Liquidation**: Liquidate undercollateralized positions
 - **Debt Refinancing**: Swap between lending protocols
-- **Complex DeFi Strategies**: Multi-step transactions without capital
+- **Complex Strategies**: Multi-step DeFi transactions
+
+### 🔒 Staking
+
+- **Passive Income**: Earn 12.5% APY on ETH
+- **Governance Rights**: Vote on platform decisions
+- **Trust Building**: Improve credit score through staking
+
+### 📊 Trust Scores
+
+- **Better Rates**: Higher scores = lower interest rates
+- **Higher Limits**: Increased borrowing capacity
+- **Premium Features**: Access to advanced tools
 
 ## 🏗️ Build & Deploy
 
 ```bash
 # Build for production
-npm run build
+pnpm run build
 
 # Preview production build
-npm run preview
+pnpm run preview
 
 # Type checking
-npm run type-check
+pnpm run type-check
 
 # Linting
-npm run lint
+pnpm run lint
 ```
 
 ## 🤝 Contributing
@@ -104,8 +170,33 @@ Built for DeFi innovation, enabling capital-efficient trading strategies through
 
 ## ⚠️ Disclaimer
 
-Flash loans are advanced DeFi tools. Always test on testnets first and understand the risks involved. This software is provided as-is for educational and development purposes.
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## ⚠️ Disclaimer
+
+This is experimental DeFi software. Smart contracts involve financial risk. Always:
+
+- Understand the code before interacting
+- Start with small amounts
+- Be aware of gas costs and slippage
+- Never invest more than you can afford to lose
+
+**The software is provided as-is for educational and development purposes.**
+
+## 📞 Support
+
+- **Documentation**: See [MAINNET_DEPLOYMENT_SUCCESS.md](./MAINNET_DEPLOYMENT_SUCCESS.md)
+- **Issues**: GitHub Issues
+- **Contract**: [Etherscan](https://etherscan.io/address/0xacd628306e1831c1105390d5f2eeba31e06bf8db)
 
 ---
 
-**Made with ❤️ for the DeFi community**
+**Built for the DeFi community with ❤️**  
+**Live on Ethereum Mainnet** 🚀

@@ -247,3 +247,11 @@ button:focus-visible {
   -moz-appearance: textfield;
   /* Firefox */
 }
+
+/* Trust Score Progress Bar */
+@layer utilities {
+  .trust-score-progress {
+    --progress-width: 0%;
+    width: var(--progress-width);
+  }
+}

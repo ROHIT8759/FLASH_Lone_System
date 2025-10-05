@@ -27,6 +27,8 @@ function NavBar({
     { id: "marketplace", label: "MARKETPLACE" },
     { id: "dashboard", label: "DASHBOARD" },
     { id: "cards", label: "LOAN CARDS" },
+    { id: "advanced", label: "ADVANCED" },
+    { id: "contract", label: "CONTRACT" },
   ];
 
   const handleWalletClick = () => {
@@ -51,22 +53,20 @@ function NavBar({
                 <li key={item.id}>
                   <button
                     onClick={() => setCurrentPage(item.id)}
-                    className={`text-sm font-medium transition-all relative group px-3 py-2 rounded-lg ${
-                      currentPage === item.id
-                        ? "text-cyan-400"
-                        : "text-white/80 hover:text-cyan-300"
-                    }`}
+                    className={`text-sm font-medium transition-all relative group px-3 py-2 rounded-lg ${currentPage === item.id
+                      ? "text-cyan-400"
+                      : "text-white/80 hover:text-cyan-300"
+                      }`}
                   >
                     {item.label}
                     <span
-                      className={`absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-fuchsia-500 group-hover:w-full transition-all duration-300 ${
-                        currentPage === item.id ? "w-full" : ""
-                      }`}
+                      className={`absolute left-0 -bottom-1 h-0.5 w-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-fuchsia-500 group-hover:w-full transition-all duration-300 ${currentPage === item.id ? "w-full" : ""
+                        }`}
                     ></span>
                   </button>
                 </li>
               ))}
-              
+
               {/* Network Toggle */}
               {onToggleNetwork && (
                 <li>
@@ -78,7 +78,7 @@ function NavBar({
                   </button>
                 </li>
               )}
-              
+
               <li>
                 <button
                   onClick={handleWalletClick}
@@ -86,8 +86,8 @@ function NavBar({
                 >
                   {walletAddress
                     ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(
-                        -4
-                      )}`
+                      -4
+                    )}`
                     : "Connect Wallet"}
                 </button>
               </li>
@@ -101,19 +101,16 @@ function NavBar({
               >
                 <div className="w-6 h-6 flex flex-col justify-center items-center space-y-1">
                   <span
-                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                      isOpen ? "rotate-45 translate-y-2" : ""
-                    }`}
+                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "rotate-45 translate-y-2" : ""
+                      }`}
                   ></span>
                   <span
-                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                      isOpen ? "opacity-0" : ""
-                    }`}
+                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""
+                      }`}
                   ></span>
                   <span
-                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                      isOpen ? "-rotate-45 -translate-y-2" : ""
-                    }`}
+                    className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""
+                      }`}
                   ></span>
                 </div>
               </button>
@@ -137,11 +134,10 @@ function NavBar({
                         setCurrentPage(item.id);
                         setIsOpen(false);
                       }}
-                      className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 border ${
-                        currentPage === item.id
-                          ? "bg-cyan-400/20 text-cyan-400 border-cyan-400/30"
-                          : "bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-cyan-400/20"
-                      }`}
+                      className={`w-full text-left py-3 px-4 rounded-lg transition-all duration-300 border ${currentPage === item.id
+                        ? "bg-cyan-400/20 text-cyan-400 border-cyan-400/30"
+                        : "bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-cyan-400/20"
+                        }`}
                     >
                       {item.label}
                     </button>
@@ -169,8 +165,8 @@ function NavBar({
                   >
                     {walletAddress
                       ? `${walletAddress.slice(0, 8)}...${walletAddress.slice(
-                          -6
-                        )}`
+                        -6
+                      )}`
                       : "Connect Wallet"}
                   </button>
                 </div>

@@ -74,7 +74,7 @@ const SmallLoanCard: React.FC<SmallLoanCardProps> = ({ loan }) => {
   const handleRepayLoan = async () => {
     // Placeholder for Web3 loan repayment functionality
     // In a real implementation, this would interact with smart contracts on Ethereum/EVM
-    
+
     setIsPaying(true);
     setError(null);
     setTxHash(null);
@@ -82,7 +82,7 @@ const SmallLoanCard: React.FC<SmallLoanCardProps> = ({ loan }) => {
     try {
       // Simulate a transaction
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       const mockTxHash = "0x" + Math.random().toString(16).substr(2, 40);
       setTxHash(mockTxHash);
       alert("✅ Repayment successful!");
@@ -103,13 +103,12 @@ const SmallLoanCard: React.FC<SmallLoanCardProps> = ({ loan }) => {
           Loan #{loan?.id || 'TBD'}
         </h3>
         <span
-          className={`text-xs font-medium px-3 py-1 rounded-full border backdrop-blur-sm ${
-            loan?.status === 'Active'
+          className={`text-xs font-medium px-3 py-1 rounded-full border backdrop-blur-sm ${loan?.status === 'Active'
               ? 'bg-green-400/10 text-green-400 border-green-400/30'
               : loan?.status === 'Pending'
-              ? 'bg-yellow-400/10 text-yellow-300 border-yellow-400/30'
-              : 'bg-gray-400/10 text-gray-300 border-gray-400/30'
-          }`}
+                ? 'bg-yellow-400/10 text-yellow-300 border-yellow-400/30'
+                : 'bg-gray-400/10 text-gray-300 border-gray-400/30'
+            }`}
         >
           {loan?.status || 'Active'}
         </span>
@@ -145,7 +144,7 @@ const SmallLoanCard: React.FC<SmallLoanCardProps> = ({ loan }) => {
           <p className="text-green-400 text-xs mt-2">
             Tx:{" "}
             <a
-              href={`https://etherscan.io/tx/${txHash}`}
+              href={`https://u2uscan.xyz/tx/${txHash}`}
               target="_blank"
               rel="noreferrer"
               className="underline"

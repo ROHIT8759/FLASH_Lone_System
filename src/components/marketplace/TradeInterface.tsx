@@ -198,7 +198,7 @@ const TradeInterface: React.FC<TradeInterfaceProps> = () => {
           <div className="text-green-300">
             <div>Transaction successful!</div>
             <a
-              href={`https://etherscan.io/tx/${txHash}`}
+              href={`https://u2uscan.xyz/tx/${txHash}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-200 hover:text-green-100 underline flex items-center gap-1"
@@ -231,10 +231,10 @@ const TradeInterface: React.FC<TradeInterfaceProps> = () => {
               key={type}
               onClick={() => setTradeType(type)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tradeType === type
-                  ? type === "borrow"
-                    ? "bg-blue-600 text-white"
-                    : "bg-green-600 text-white"
-                  : "text-white/60 hover:text-white"
+                ? type === "borrow"
+                  ? "bg-blue-600 text-white"
+                  : "bg-green-600 text-white"
+                : "text-white/60 hover:text-white"
                 }`}
             >
               {type === "borrow" ? "Borrow" : "Lend"}
@@ -290,8 +290,8 @@ const TradeInterface: React.FC<TradeInterfaceProps> = () => {
                   key={dur.value}
                   onClick={() => setDuration(dur.value)}
                   className={`p-3 rounded-lg border text-left transition-all ${duration === dur.value
-                      ? "border-blue-400 bg-white/10 text-white"
-                      : "border-white/10 text-white/70 hover:border-white/20"
+                    ? "border-blue-400 bg-white/10 text-white"
+                    : "border-white/10 text-white/70 hover:border-white/20"
                     }`}
                 >
                   <div className="font-medium">{dur.label}</div>
@@ -312,8 +312,8 @@ const TradeInterface: React.FC<TradeInterfaceProps> = () => {
                   <label
                     key={option.value}
                     className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${collateralType === option.value
-                        ? "border-blue-400 bg-white/10"
-                        : "border-white/10 hover:border-white/20"
+                      ? "border-blue-400 bg-white/10"
+                      : "border-white/10 hover:border-white/20"
                       }`}
                   >
                     <input
@@ -376,10 +376,10 @@ const TradeInterface: React.FC<TradeInterfaceProps> = () => {
             onClick={handleSubmit}
             disabled={!amount || !contract.isConnected || isLoading || parseFloat(amount) <= 0 || parseFloat(amount) > parseFloat(getMaxAmount())}
             className={`w-full py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${!amount || !contract.isConnected || parseFloat(amount) <= 0 || parseFloat(amount) > parseFloat(getMaxAmount())
-                ? "bg-white/10 text-white/40 cursor-not-allowed"
-                : tradeType === "borrow"
-                  ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-                  : "bg-green-600 hover:bg-green-700 text-white shadow-lg"
+              ? "bg-white/10 text-white/40 cursor-not-allowed"
+              : tradeType === "borrow"
+                ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+                : "bg-green-600 hover:bg-green-700 text-white shadow-lg"
               }`}
           >
             {isLoading ? (

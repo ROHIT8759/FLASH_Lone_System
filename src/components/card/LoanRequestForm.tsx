@@ -719,8 +719,8 @@ const LoanRequestForm: React.FC = () => {
                 type="button"
                 onClick={() => setLoanType("standard")}
                 className={`p-4 rounded-lg border transition-all ${loanType === "standard"
-                    ? "bg-blue-500/20 border-blue-400 text-blue-300"
-                    : "bg-white/5 border-white/20 text-white/70 hover:bg-white/10"
+                  ? "bg-blue-500/20 border-blue-400 text-blue-300"
+                  : "bg-white/5 border-white/20 text-white/70 hover:bg-white/10"
                   }`}
               >
                 <div className="text-center">
@@ -733,8 +733,8 @@ const LoanRequestForm: React.FC = () => {
                 type="button"
                 onClick={() => setLoanType("flash")}
                 className={`p-4 rounded-lg border transition-all ${loanType === "flash"
-                    ? "bg-purple-500/20 border-purple-400 text-purple-300"
-                    : "bg-white/5 border-white/20 text-white/70 hover:bg-white/10"
+                  ? "bg-purple-500/20 border-purple-400 text-purple-300"
+                  : "bg-white/5 border-white/20 text-white/70 hover:bg-white/10"
                   }`}
               >
                 <div className="text-center">
@@ -779,8 +779,8 @@ const LoanRequestForm: React.FC = () => {
                 min="0.01"
                 max={maxLoanAmount}
                 className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-white/50 focus:outline-none transition-colors ${validationErrors.amount
-                    ? 'border-red-400 focus:border-red-400'
-                    : 'border-white/20 focus:border-blue-400'
+                  ? 'border-red-400 focus:border-red-400'
+                  : 'border-white/20 focus:border-blue-400'
                   }`}
                 value={amount}
                 onChange={handleAmountChange}
@@ -830,8 +830,8 @@ const LoanRequestForm: React.FC = () => {
                 type="text"
                 maxLength={100}
                 className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-white/50 focus:outline-none transition-colors ${validationErrors.purpose
-                    ? 'border-red-400 focus:border-red-400'
-                    : 'border-white/20 focus:border-blue-400'
+                  ? 'border-red-400 focus:border-red-400'
+                  : 'border-white/20 focus:border-blue-400'
                   }`}
                 value={purpose}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPurpose(e.target.value)}
@@ -854,8 +854,8 @@ const LoanRequestForm: React.FC = () => {
                 <textarea
                   rows={4}
                   className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-white/50 focus:outline-none transition-colors font-mono text-xs ${validationErrors.flashLoanData
-                      ? 'border-red-400 focus:border-red-400'
-                      : 'border-white/20 focus:border-purple-400'
+                    ? 'border-red-400 focus:border-red-400'
+                    : 'border-white/20 focus:border-purple-400'
                     }`}
                   value={flashLoanData}
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFlashLoanData(e.target.value)}
@@ -886,8 +886,8 @@ const LoanRequestForm: React.FC = () => {
                 <input
                   type="text"
                   className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-white/50 focus:outline-none transition-colors font-mono text-xs ${validationErrors.collateralAddress
-                      ? 'border-red-400 focus:border-red-400'
-                      : 'border-white/20 focus:border-blue-400'
+                    ? 'border-red-400 focus:border-red-400'
+                    : 'border-white/20 focus:border-blue-400'
                     }`}
                   value={collateralAddress}
                   onChange={handleCollateralAddressChange}
@@ -916,8 +916,8 @@ const LoanRequestForm: React.FC = () => {
                 Object.keys(validationErrors).length > 0
               }
               className={`w-full px-6 py-3 rounded-lg text-white font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg ${loanType === "flash"
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                  : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                 }`}
             >
               {isLoading ?
@@ -949,7 +949,7 @@ const LoanRequestForm: React.FC = () => {
                 Flash loan completed in single transaction. View on Explorer:{" "}
                 <a
                   className="underline hover:text-green-200 font-mono"
-                  href={`https://etherscan.io/tx/${txHash}`}
+                  href={`https://u2uscan.xyz/tx/${txHash}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -961,7 +961,7 @@ const LoanRequestForm: React.FC = () => {
                 View on Explorer:{" "}
                 <a
                   className="underline hover:text-green-200 font-mono"
-                  href={`https://etherscan.io/tx/${txHash}`}
+                  href={`https://u2uscan.xyz/tx/${txHash}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -241,7 +241,7 @@ const LoanManagementSystem: React.FC<LoanManagementSystemProps> = () => {
               className="text-cyan-400 hover:text-cyan-300 underline"
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://etherscan.io/tx/${txHash}`}
+              href={`https://u2uscan.xyz/tx/${txHash}`}
             >
               View on Etherscan
             </a>

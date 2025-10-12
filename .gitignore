@@ -25,10 +25,10 @@ dist-ssr
 *.LoanPlatform.sol
 *.sol
 
-# Solidity build artifacts (keep source files, ignore compiled output)
-artifacts/
-cache/
-typechain-types/
+# # Solidity build artifacts (keep source files, ignore compiled output)
+# artifacts/
+# cache/
+# typechain-types/
 
 .env
 .env.example

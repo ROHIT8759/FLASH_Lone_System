@@ -1,0 +1,21 @@
+# Vercel ignore file
+
+# This is a frontend-only application
+
+# No API routes to analyze
+
+# Development files
+
+src/
+_.ts
+_.tsx
+_.js
+_.jsx
+
+# Build artifacts only
+
+!dist/
+
+# Documentation
+
+\*.md
